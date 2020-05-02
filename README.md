@@ -1,5 +1,5 @@
 # crawler_pic
-A python Multiprocess crawler study case for crawling meitulu.com
+A python multiprocess crawler study case for crawling meitulu.com
 
 ## Use
 To creater a folder in d: to store pictures that named "crawler" 
