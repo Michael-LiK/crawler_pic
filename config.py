@@ -3,3 +3,5 @@ proxy_config = {
     "proxy" : {"http": proxyinfo, "https": proxyinfo},
     "open" : "false"
 }
+base_path = 'd:\\spider\\'
+processes_num = 5

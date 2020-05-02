@@ -6,7 +6,6 @@ import config
 
 
 class meitulu:
-
     def get_pic_list(self, url):
         response = requests.get(url)
         response.encoding = 'utf-8'
@@ -33,19 +32,16 @@ class meitulu:
             res.append(pic_info)
         return res
 
-    def download_img(self, info, proxy_config):
-
-        print('开始下载' + info['title'])
-        dirname = 'd:\\crawler\\' + info['title']
-
+    def download_img(self, info):
+        print('download start' + info['title'])
+        dirname = config.base_path + info['title']
         if not os.path.exists(dirname):
             os.mkdir(dirname)
-
         for i in range(1, int(info['num']) + 1):
             img_url = 'https://mtl.gzhuibei.com/images/img/' + info['index'] + '/' + str(i) + '.jpg'
             print(img_url)
             if (config.proxy_config['open'] == "true"):
-                response = requests.get(url=img_url, proxies=proxy_config['proxy'])
+                response = requests.get(url=img_url, proxies=config.proxy_config['proxy'])
             else:
                 response = requests.get(url=img_url)
             if response.status_code == 200:
@@ -53,17 +49,20 @@ class meitulu:
                 # 打开文件夹并写入图片
                 with open(filename, 'wb') as f:
                     f.write(response.content)
-        print('下载完成' + info['title'])
+        print('download finished' + info['title'])
 
 
 if __name__ == '__main__':
+    bass_path = config.base_path
+    if not os.path.exists(bass_path):
+        os.mkdir(bass_path)
     client = meitulu()
     pic_list = client.get_pic_list("https://www.meitulu.com/t/minidamengmeng/")
-    # 配置进程池
-    pool = multiprocessing.Pool(5)
+    # config the process pool
+    pool = multiprocessing.Pool(config.processes_num)
 
     for value in pic_list:
-        pool.apply_async(client.download_img, args=(value, config.proxy_config))
+        pool.apply_async(client.download_img, args=(value,))
     pool.close()
     pool.join()
-    print("爬虫执行结束")
+    print("crawler end")
