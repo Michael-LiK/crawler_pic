@@ -7,7 +7,7 @@ requests module
 ## Use
 To creater a folder in d: to store pictures that named "crawler" 
 python spider.py
-example_url: https://www.meitulu.com/t/minidamengmeng/
+example_url: https://www.meitulu.cn/t/minidamengmeng/
 
 ## Config
 You can select to open or off the proxy and change the proxy,I use the https://www.abuyun.com/ for proxy
