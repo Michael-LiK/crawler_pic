@@ -11,7 +11,7 @@ class meitulu:
         response = requests.get(url)
         response.encoding = 'utf-8'
         pic_num_search = re.compile(r'图片： (\d+) 张')
-        pic_index_search = re.compile(r'href="https://www.meitulu.com/item/(\d+).html"')
+        pic_index_search = re.compile(r'href="https://www.meitulu.cn/item/(\d+).html"')
         pic_tag_search = re.compile(r'class="tags">(\w+)</a>')
         pic_title_search = re.compile(r'target="_blank">(.*?)</a>')
         pic_num = pic_num_search.findall(response.text)
