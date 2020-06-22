@@ -1,6 +1,9 @@
 # crawler_pic
 A python multiprocess crawler study case for crawling meitulu.com
 
+## Depends
+requests module
+
 ## Use
 To creater a folder in d: to store pictures that named "crawler" 
 python spider.py
